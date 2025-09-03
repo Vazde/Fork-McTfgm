@@ -1,19 +1,25 @@
-// priority: 0
+// priority: 2
 "use strict";
 
 StartupEvents.registry('item', event => {
+	ContentPacks.invoke('registerItem', 'pre', event)
 	registerBetterEndItems(event)
     registerGTCEuItems(event)
     registerTFGItems(event)
+	ContentPacks.invoke('registerItem', 'post', event)
 })
 
 StartupEvents.registry('block', event => {
+	ContentPacks.invoke('registerBlock', 'pre', event)
     registerTFGBlocks(event)
 	registerBetterEndBlocks(event)
+	ContentPacks.invoke('registerBlock', 'post', event)
 })
 
 StartupEvents.registry('entity_type', event => {
+	ContentPacks.invoke('registerEntityType', 'pre', event)
 	registerTFGEntityTypes(event)
+	ContentPacks.invoke('registerEntityType', 'post', event)
 })
 
 BlockEvents.modification(event => {
@@ -49,6 +55,7 @@ GTCEuStartupEvents.registry('gtceu:tag_prefix', event => {
 })
 
 GTCEuStartupEvents.registry('gtceu:material', event => {
+	ContentPacks.invoke('registerGtMaterial', 'pre', event)
 	registerAdAstraMaterials(event)
 	registerAE2Materials(event)
 	registerCreateMaterials(event)
@@ -57,6 +64,7 @@ GTCEuStartupEvents.registry('gtceu:material', event => {
 	registerGreateMaterials(event)
 	registerTFGMaterials(event)
 	registerTFGNuclearMaterials(event)
+	ContentPacks.invoke('registerGtMaterial', 'post', event)
 })
 
 GTCEuStartupEvents.registry('gtceu:material_icon_set', event => {

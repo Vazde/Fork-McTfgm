@@ -1,10 +1,11 @@
-// priority: 1
+// priority: 2
 "use strict";
 
 /**
  * Событие регистрации предмет-тэгов.
  */
 ServerEvents.tags('item', event => {
+	ContentPacks.invoke('registerItemTag', 'pre', event)
 	registerAdAstraItemTags(event)
 	registerAdvancedPeripheralsItemTags(event)
 	registerAE2ItemTags(event)
@@ -54,12 +55,14 @@ ServerEvents.tags('item', event => {
     registerTFCLunchboxItemTags(event)
 	registerVintageImprovementsItemTags(event)
 	registerWABItemTags(event)
+	ContentPacks.invoke('registerItemTag', 'post', event)
 })
 
 /**
  * Событие регистрации блок-тэгов.
  */
 ServerEvents.tags('block', event => {
+	ContentPacks.invoke('registerBlockTag', 'pre', event)
 	registerAdAstraBlockTags(event)
 	registerAE2BlockTags(event)
 	registerAFCBlockTags(event)
@@ -89,12 +92,14 @@ ServerEvents.tags('block', event => {
 	registerTFGBlockTags(event)
 	registerVintageImprovementsBlockTags(event)
 	registerWABBlockTags(event)
+	ContentPacks.invoke('registerBlockTag', 'post', event)
 })
 
 /**
  * Событие регистрации жидкость-тэгов.
  */
 ServerEvents.tags('fluid', event => {
+	ContentPacks.invoke('registerFluidTag', 'pre', event)
 	registerAFCFluidTags(event)
 	registerAdAstraFluidTags(event)
 	registerCreateFluidTags(event)
@@ -105,6 +110,7 @@ ServerEvents.tags('fluid', event => {
 	registerTFCFluidTags(event)
 	registerTFGFluidTags(event)
 	registerVintageImprovementsFluidTags(event)
+	ContentPacks.invoke('registerFluidTag', 'post', event)
 })
 
 ServerEvents.tags('worldgen/configured_feature', event => {
@@ -200,6 +206,7 @@ GTCEuServerEvents.fluidVeins(event => {
  * Срабатывает после инициализации датапаков и тегов.
  */
 ServerEvents.recipes(event => {
+	ContentPacks.invoke('registerRecipe', 'pre', event)
 	registerAdAstraRecipes(event)
 	registerAdvancedPeripheralsRecipes(event)
 	registerAlekishipsRecipes(event)
@@ -270,6 +277,7 @@ ServerEvents.recipes(event => {
 	registerVintageImprovementsRecipes(event)
 	registerWaterFlasksRecipes(event)
 	registerWABRecipes(event)
+	ContentPacks.invoke('registerRecipe', 'post', event)
 })
 
 TaCZServerEvents.gunIndexLoad((event) => {
